@@ -7,24 +7,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BasicFormComponent implements OnInit {
 
-  data = [];
+  data = {};
+  dataList = [];
   constructor() { }
 
   ngOnInit() {
-    this.data = this.getData();
+    this.dataList = JSON.parse(localStorage.getItem('dataList'));
   }
 
-  public register():void{
-
+  public addData():void{
+    if(!this.dataList){
+      this.dataList = [];
+    }
+    console.log(this.data);
+    this.dataList.push(this.data);
+    localStorage.setItem('dataList', JSON.stringify(this.dataList));
   }
 
-  private getData(): any{
-    return [{'fName':'shravya', 'lName':'Lodhi', 'email':'shravya.lodhi@gmail.com'},
-    {'fName':'santosh', 'lName':'Lodhi', 'email':'santosh.lodhi@gmail.com'},
-    {'fName':'suman', 'lName':'Lodhi', 'email':'suman.lodhi@gmail.com'},
-    {'fName':'roshan', 'lName':'Lodhi', 'email':'roshan.lodhi@gmail.com'}
-
-    ];
+  public delete(index): void{
+    console.log('delete record no. '+index);
+    if (index !== -1) {
+        this.dataList.splice(index, 1);
+    }
+    localStorage.setItem('dataList', JSON.stringify(this.dataList));
   }
 
 }
