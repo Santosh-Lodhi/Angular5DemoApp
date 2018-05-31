@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ModalComponent, ModalService } from 'angular-5-popup';
+import { HtmlParser } from '@angular/compiler';
 
 @Component({
   selector: 'app-basic-form',
@@ -6,10 +8,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./basic-form.component.css']
 })
 export class BasicFormComponent implements OnInit {
-
+  @ViewChild("modal") modal: ModalComponent;
   data = {};
   dataList = [];
-  constructor() { }
+
+ constructor(
+   private ms:ModalService
+ ){
+
+ }
+ 
+ openModal(id: string){
+   this.modal.openModal(id);
+ }
+
+ closeModal(id){
+   this.modal.closeModal(id);
+ }
 
   ngOnInit() {
     this.dataList = JSON.parse(localStorage.getItem('dataList'));

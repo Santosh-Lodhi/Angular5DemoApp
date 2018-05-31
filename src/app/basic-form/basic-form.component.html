@@ -1,71 +1,94 @@
 <div class="container">
-  <div class="row" style="margin-left: 2%;">
-      <div class="form_bg">
-          <form  (ngSubmit)="addData(value)">
-               <h2 class="text-center">Registration page</h2>
-              <br/>
-              <div class="form-group">
-                  <input type="text" class="form-control" placeholder="First Name" name="firstame" [(ngModel)]="data.fName" >
-              </div>
-              <div class="form-group">
-                  <input type="text" class="form-control"  placeholder="Last Name" name="lastname" [(ngModel)]="data.lName" >
-              </div>
-              <div class="form-group">
-                  <input type="email" class="form-control" id="email" placeholder="Email" name="email" [(ngModel)]="data.email">
-              </div>
-               <div class="form-group">
-              </div>
-              <br/>
-              <div class="align-center">
-                  <button type="submit" class="btn btn-default" >Add</button>
-              </div>
-          </form>
-      </div>
-  </div>
+    <div class="row" style="margin-left: 2%;">
+        <div class="form_bg">
+            <form (ngSubmit)="addData(value)">
+                <h2 class="text-center">Registration page</h2>
+                <br/>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="First Name" name="firstame" [(ngModel)]="data.fName">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Last Name" name="lastname" [(ngModel)]="data.lName">
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" id="email" placeholder="Email" name="email" [(ngModel)]="data.email">
+                </div>
+                <div class="form-group">
+                </div>
+                <br/>
+                <div class="align-center">
+                    <button type="submit" class="btn btn-default">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
-  <div style="padding:20px;">
-    <table class="table table-striped" [mfData]="dataList" #mf="mfDataTable" [mfRowsOnPage]="5">
-    <thead>
-    <tr>
-        <th style="width: 20%">
-            <mfDefaultSorter by="fName">First Name</mfDefaultSorter>
-        </th>
-        <th style="width: 20%">
-            <mfDefaultSorter by="lName">Last Name</mfDefaultSorter>
-        </th>
-        <th style="width: 30%">
-            <mfDefaultSorter by="email">Email</mfDefaultSorter>
-        </th>
-        <th class="text-center" style="width: 30%">
-            <mfDefaultSorter>Actions</mfDefaultSorter>
-        </th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let item of mf.data ; let idx = index">
-        <td>{{item.fName | uppercase}}</td>
-        <td>{{item.lName | uppercase}}</td>
-        <td>{{item.email}}</td>
-        <td class="text-center">
-          <span style="padding:5px;">
-            <button type="button" class="btn btn-sm">Edit</button>
-          </span>
-          <span style="padding:5px;">
-            <button type="button" class="btn btn-danger btn-sm" (click)="delete(idx)">Delete</button>
-          </span>
-          <span style="padding:5px;">
-            <button type="button" class="btn btn-primary btn-sm">View</button>
-          </span>
-        </td>
-    </tr>
-  </tbody>
-    <tfoot>
-    <tr>
-        <td colspan="4">
-            <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
-        </td>
-    </tr>
-    </tfoot>
-</table>
-  <div>
+    <div style="padding:20px;">
+        <table class="table table-striped" [mfData]="dataList" #mf="mfDataTable" [mfRowsOnPage]="5">
+            <thead>
+                <tr>
+                    <th style="width: 20%">
+                        <mfDefaultSorter by="fName">First Name</mfDefaultSorter>
+                    </th>
+                    <th style="width: 20%">
+                        <mfDefaultSorter by="lName">Last Name</mfDefaultSorter>
+                    </th>
+                    <th style="width: 30%">
+                        <mfDefaultSorter by="email">Email</mfDefaultSorter>
+                    </th>
+                    <th class="text-center" style="width: 30%">
+                        <mfDefaultSorter>Actions</mfDefaultSorter>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of mf.data ; let idx = index">
+                    <td>{{item.fName | uppercase}}</td>
+                    <td>{{item.lName | uppercase}}</td>
+                    <td>{{item.email}}</td>
+                    <td class="text-center">
+                        <span style="padding:5px;">
+                            <button type="button" class="btn btn-sm">Edit</button>
+                        </span>
+                        <span style="padding:5px;">
+                            <button type="button" class="btn btn-danger btn-sm" (click)="delete(idx)">Delete</button>
+                        </span>
+                        <span style="padding:5px;">
+                            <button type="button" class="btn btn-primary btn-sm" (click)="openModal('modal-1')">View</button>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4">
+                        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <sc-modal id="modal-1" class="default" #modal>
+        <div class="model">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        This my title
+                        <button class="sc-modal-close" (click)="closeModal('modal-1');">
+                            <i class="fa fa-times-circle fa-2x" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h1>A Custom Modal Name</h1>
+                        <p>
+                            Home page text:
+                            <input type="text" />
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-background"></div>
+    </sc-modal>
 </div>
