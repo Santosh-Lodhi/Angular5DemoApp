@@ -17,7 +17,8 @@
                 </div>
                 <br/>
                 <div class="align-center">
-                    <button type="submit" class="btn btn-default">Add</button>
+                    <button type="submit" class="btn btn-default" style="margin-right: 10px;">Add</button>
+                    <button type="button" class="btn btn-default" (click)="update()">Update</button>
                 </div>
             </form>
         </div>
@@ -48,13 +49,13 @@
                     <td>{{item.email}}</td>
                     <td class="text-center">
                         <span style="padding:5px;">
-                            <button type="button" class="btn btn-sm">Edit</button>
+                            <button type="button" class="btn btn-sm" (click)="edit(idx)">Edit</button>
                         </span>
                         <span style="padding:5px;">
                             <button type="button" class="btn btn-danger btn-sm" (click)="delete(idx)">Delete</button>
                         </span>
                         <span style="padding:5px;">
-                            <button type="button" class="btn btn-primary btn-sm" (click)="openModal('custom-modal-1')">View</button>
+                            <button type="button" class="btn btn-primary btn-sm" (click)="openModal('custom-modal-1', idx)">View</button>
                         </span>
                     </td>
                 </tr>
@@ -72,11 +73,28 @@
     <modal id="custom-modal-1">
         <div class="modal">
             <div class="modal-body">
-                <h1>A Custom Modal!</h1>
-                <p>
-                    Home page text: <input type="text" [(ngModel)]="bodyText" />
-                </p>
-                <button (click)="closeModal('custom-modal-1');">Close</button>
+                <h1>View</h1>
+                <div class="form_bg">
+                        <form>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="First Name" name="firstame" [(ngModel)]="data.fName">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Last Name" name="lastname" [(ngModel)]="data.lName">
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" id="email" placeholder="Email" name="email" [(ngModel)]="data.email">
+                            </div>
+                            <div class="form-group">    
+                            </div>
+                            <br/>
+                            <div class="align-center">
+                                <!-- <button type="button" class="btn btn-primary">Ok</button> -->
+                                <button type="button" class="btn btn-default" (click)="closeModal('custom-modal-1');">Close</button>
+                            </div>
+                        </form>
+                    </div>
+                <!-- <button (click)="closeModal('custom-modal-1');">Close</button> -->
             </div>
         </div>
         <div class="modal-background"></div>

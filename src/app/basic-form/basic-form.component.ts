@@ -19,7 +19,8 @@ export class BasicFormComponent implements OnInit {
 
  }
  
- openModal(id: string) {
+ openModal(id: string, index: number) {
+  this.data = this.dataList[index];
   this.modalService.open(id);
 }
 
@@ -28,11 +29,14 @@ closeModal(id: string) {
 }
 
   ngOnInit() {
-    this.bodyText = 'This text can be updated in modal 1';
+    // this.bodyText = 'This text can be updated in modal 1';
     this.dataList = JSON.parse(localStorage.getItem('dataList'));
   }
 
   public addData():void{
+    if(!this.data.fName){
+      return;
+    }
     if(!this.dataList){
       this.dataList = [];
     }
@@ -47,6 +51,14 @@ closeModal(id: string) {
         this.dataList.splice(index, 1);
     }
     localStorage.setItem('dataList', JSON.stringify(this.dataList));
+  }
+
+  public edit(index): void{
+    this.data = this.dataList[index];
+  }
+
+  public update(): void{
+    console.log('Update.. called');
   }
 
 }
