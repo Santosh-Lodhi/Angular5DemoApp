@@ -54,7 +54,7 @@
                             <button type="button" class="btn btn-danger btn-sm" (click)="delete(idx)">Delete</button>
                         </span>
                         <span style="padding:5px;">
-                            <button type="button" class="btn btn-primary btn-sm" (click)="openModal('modal-1')">View</button>
+                            <button type="button" class="btn btn-primary btn-sm" (click)="openModal('custom-modal-1')">View</button>
                         </span>
                     </td>
                 </tr>
@@ -69,26 +69,16 @@
         </table>
     </div>
 
-    <sc-modal id="modal-1" class="default" #modal>
-        <div class="model">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        This my title
-                        <button class="sc-modal-close" (click)="closeModal('modal-1');">
-                            <i class="fa fa-times-circle fa-2x" aria-hidden="true"></i>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <h1>A Custom Modal Name</h1>
-                        <p>
-                            Home page text:
-                            <input type="text" />
-                        </p>
-                    </div>
-                </div>
+    <modal id="custom-modal-1">
+        <div class="modal">
+            <div class="modal-body">
+                <h1>A Custom Modal!</h1>
+                <p>
+                    Home page text: <input type="text" [(ngModel)]="bodyText" />
+                </p>
+                <button (click)="closeModal('custom-modal-1');">Close</button>
             </div>
         </div>
         <div class="modal-background"></div>
-    </sc-modal>
+    </modal>
 </div>

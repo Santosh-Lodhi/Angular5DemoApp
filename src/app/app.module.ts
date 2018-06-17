@@ -6,12 +6,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BasicFormComponent } from './basic-form/basic-form.component';
 import { ScModalModule } from 'angular-5-popup';
+import { ModalComponent } from './directive/modal/modal.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    BasicFormComponent
+    BasicFormComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

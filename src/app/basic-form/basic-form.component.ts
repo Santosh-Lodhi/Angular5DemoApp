@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ModalComponent, ModalService } from 'angular-5-popup';
 import { HtmlParser } from '@angular/compiler';
+import { ModalComponent } from '../directive/modal/modal.component';
+import { ModalService } from '../services/modal.service';
 
 @Component({
   selector: 'app-basic-form',
@@ -11,22 +12,23 @@ export class BasicFormComponent implements OnInit {
   @ViewChild("modal") modal: ModalComponent;
   data = {};
   dataList = [];
+  private bodyText: string;
 
  constructor(
-   private ms:ModalService
- ){
+   private modalService:ModalService){
 
  }
  
- openModal(id: string){
-   this.modal.openModal(id);
- }
+ openModal(id: string) {
+  this.modalService.open(id);
+}
 
- closeModal(id){
-   this.modal.closeModal(id);
- }
+closeModal(id: string) {
+  this.modalService.close(id);
+}
 
   ngOnInit() {
+    this.bodyText = 'This text can be updated in modal 1';
     this.dataList = JSON.parse(localStorage.getItem('dataList'));
   }
 
